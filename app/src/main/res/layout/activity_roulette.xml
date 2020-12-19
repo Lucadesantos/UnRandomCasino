@@ -7,11 +7,12 @@
     tools:context=".Roulette">
 
     <TextView
-        android:id="@+id/Result"
+        android:id="@+id/result"
         android:layout_width="245dp"
         android:layout_height="75dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="116dp"
         android:gravity="center"
+        android:textColor="@color/black"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,27 +20,26 @@
 
     <TextView
         android:id="@+id/choice"
-        android:layout_width="168dp"
-        android:layout_height="89dp"
-        android:layout_marginBottom="348dp"
+        android:layout_width="136dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
         android:textSize="30dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Result"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/result" />
 
     <Button
-        android:id="@+id/red"
+        android:id="@+id/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:text="Red"
+        android:layout_marginBottom="168dp"
+        android:text="Black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.328"
-        app:layout_constraintStart_toEndOf="@+id/black" />
+        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/even"
@@ -49,10 +49,10 @@
         android:text="Even"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.315"
+        app:layout_constraintHorizontal_bias="0.318"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/black"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintVertical_bias="0.262" />
 
     <Button
         android:id="@+id/odd"
@@ -62,35 +62,33 @@
         android:text="Odd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toEndOf="@+id/even"
         app:layout_constraintTop_toBottomOf="@+id/black"
-        app:layout_constraintVertical_bias="0.228" />
+        app:layout_constraintVertical_bias="0.262" />
 
     <Button
-        android:id="@+id/black"
+        android:id="@+id/red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
-        android:text="Black"
+        android:layout_marginBottom="168dp"
+        android:text="Red"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.33"
+        app:layout_constraintStart_toEndOf="@+id/black" />
 
     <Spinner
         android:id="@+id/number"
         android:layout_width="104dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="256dp"
+        android:layout_marginBottom="156dp"
         android:entries="@array/values"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/choice"
-        android:gravity="center"
-        app:layout_constraintVertical_bias="0.975" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/confirm"
@@ -154,6 +152,7 @@
         android:layout_marginTop="48dp"
         android:text="0"
         android:textSize="25dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.822"
         app:layout_constraintStart_toStartOf="parent"

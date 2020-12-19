@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
         final Button button1 = findViewById(R.id.game1);
         final Button button2 = findViewById(R.id.game2);
         final Button button3 = findViewById(R.id.game3);
-        final TextView text = findViewById(R.id.money);
 
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
