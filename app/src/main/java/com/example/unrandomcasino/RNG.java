@@ -3,7 +3,7 @@ package com.example.unrandomcasino;
 import java.util.Random;
 
 public class RNG {
-    // ICI FAIRE FONCTIONS RANDOM
+    // TODO: ICI FAIRE FONCTIONS RANDOM
 
     static int getRandomTest(int bound){
         return new Random().nextInt(bound);

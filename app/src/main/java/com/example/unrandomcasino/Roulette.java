@@ -190,9 +190,9 @@ public class Roulette extends AppCompatActivity {
                 }
 
                 if ( randNum % 2 == 0) {
-                    resArray.set(2,"even");
+                    resArray.set(2, "even");
                 }else{
-                    resArray.set(2,"odd");
+                    resArray.set(2, "odd");
                 }
 
                 if (resArray.contains(choice)){
