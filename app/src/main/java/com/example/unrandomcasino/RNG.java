@@ -8,4 +8,5 @@ public class RNG {
     static int getRandomTest(int bound){
         return new Random().nextInt(bound);
     }
+
 }

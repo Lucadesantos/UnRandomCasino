@@ -3,6 +3,8 @@ package com.example.unrandomcasino;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
@@ -114,42 +116,46 @@ public class Roulette extends AppCompatActivity {
 
                 //TODO: choix de RNG
                 //Ici j'utilise le simple random pour test
-                List<String> resArray = Arrays.asList(" "," "," ");
+
                 int randNum = RNG.getRandomTest(36);
 
                 rollAnim(randNum);
 
-                resArray.set(0,String.valueOf(randNum));
 
-                if (redA.contains(randNum)){
-                    resArray.set(1, "red");
-                }
-                if (blackA.contains(randNum)) {
-                    resArray.set(1, "black");
-                }
-
-                if ( randNum % 2 == 0) {
-                    resArray.set(2, "even");
-                }else{
-                    resArray.set(2, "odd");
-                }
-
-                if (resArray.contains(choice)){
-                    // WIN WIN
-                    int gainsMultiplyer;
-                    if (doubleA.contains(choice)) {
-                        gainsMultiplyer = 2;
-                    } else {
-                        gainsMultiplyer = 36;
-                    }
-                    Perso.setMoney(Perso.getMoney() + currBet*gainsMultiplyer);
-                }
-                currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
             }
 
         });
     }
+    void showResult(int randNum){
+        TextView currentMoney = findViewById(R.id.money2);
+        List<String> resArray = Arrays.asList(" "," "," ");
+        resArray.set(0,String.valueOf(randNum));
 
+        if (redA.contains(randNum)){
+            resArray.set(1, "red");
+        }
+        if (blackA.contains(randNum)) {
+            resArray.set(1, "black");
+        }
+
+        if ( randNum % 2 == 0) {
+            resArray.set(2, "even");
+        }else{
+            resArray.set(2, "odd");
+        }
+
+        if (resArray.contains(choice)){
+            // WIN WIN
+            int gainsMultiplyer;
+            if (doubleA.contains(choice)) {
+                gainsMultiplyer = 2;
+            } else {
+                gainsMultiplyer = 36;
+            }
+            Perso.setMoney(Perso.getMoney() + currBet*gainsMultiplyer);
+        }
+        currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
+    }
     void rollAnim(int randNum){
         TextView result = findViewById(R.id.result);
         ValueAnimator animator = ValueAnimator.ofInt(0, 36);
@@ -209,6 +215,14 @@ public class Roulette extends AppCompatActivity {
                 if (blackA.contains(animation.getAnimatedValue())) {
                     result.setTextColor(Color.parseColor("#000000"));
                 }
+            }
+
+        });
+        animator4.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                showResult(randNum);
             }
         });
         AnimatorSet s = new AnimatorSet();

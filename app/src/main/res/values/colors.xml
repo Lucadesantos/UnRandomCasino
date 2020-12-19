@@ -10,4 +10,5 @@
     <color name="red">#FF000000</color>
     <color name="primary_dark">#FF201E1F</color>
     <color name="primary_red">#FFA30000</color>
+    <color name="money_green">#FF85bb65</color>
 </resources>

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <TextView
@@ -24,6 +23,8 @@
         android:layout_height="53dp"
         android:layout_marginTop="48dp"
         android:gravity="center"
+        android:background="@drawable/moneystyle"
+        android:textColor="@color/money_green"
         android:text="0"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
