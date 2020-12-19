@@ -116,70 +116,9 @@ public class Roulette extends AppCompatActivity {
                 //Ici j'utilise le simple random pour test
                 List<String> resArray = Arrays.asList(" "," "," ");
                 int randNum = RNG.getRandomTest(36);
-                int waitTime = 50;
 
-                ValueAnimator animator = ValueAnimator.ofInt(0, 36);
-                animator.setDuration(800); //Duration is in milliseconds
-                animator.setInterpolator(new LinearInterpolator());
-                animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        result.setText(animation.getAnimatedValue().toString());
-                        if (redA.contains(animation.getAnimatedValue())) {
-                            result.setTextColor(Color.parseColor("#FF0000"));
-                        }
-                        if (blackA.contains(animation.getAnimatedValue())) {
-                            result.setTextColor(Color.parseColor("#000000"));
-                        }
-                    }
-                });
+                rollAnim(randNum);
 
-                ValueAnimator animator2 = ValueAnimator.ofInt(0, 36);
-                animator2.setDuration(1300); //Duration is in milliseconds
-                animator2.setInterpolator(new LinearInterpolator());
-                animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        result.setText(animation.getAnimatedValue().toString());
-                        if (redA.contains(animation.getAnimatedValue())) {
-                            result.setTextColor(Color.parseColor("#FF0000"));
-                        }
-                        if (blackA.contains(animation.getAnimatedValue())) {
-                            result.setTextColor(Color.parseColor("#000000"));
-                        }
-                    }
-                });
-
-                ValueAnimator animator3 = ValueAnimator.ofInt(0, 36);
-                animator3.setDuration(2000); //Duration is in milliseconds
-                animator3.setInterpolator(new LinearInterpolator());
-                animator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        result.setText(animation.getAnimatedValue().toString());
-                        if (redA.contains(animation.getAnimatedValue())) {
-                            result.setTextColor(Color.parseColor("#FF0000"));
-                        }
-                        if (blackA.contains(animation.getAnimatedValue())) {
-                            result.setTextColor(Color.parseColor("#000000"));
-                        }
-                    }
-                });
-
-                ValueAnimator animator4 = ValueAnimator.ofInt(0, randNum);
-                animator4.setDuration(120*randNum); //Duration is in milliseconds
-                animator4.setInterpolator(new DecelerateInterpolator());
-                animator4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        result.setText(animation.getAnimatedValue().toString());
-                        if (redA.contains(animation.getAnimatedValue())) {
-                            result.setTextColor(Color.parseColor("#FF0000"));
-                        }
-                        if (blackA.contains(animation.getAnimatedValue())) {
-                            result.setTextColor(Color.parseColor("#000000"));
-                        }
-                    }
-                });
-                AnimatorSet s = new AnimatorSet();
-                s.playSequentially(animator,animator2,animator3,animator4);
-                s.start();
                 resArray.set(0,String.valueOf(randNum));
 
                 if (redA.contains(randNum)){
@@ -209,5 +148,71 @@ public class Roulette extends AppCompatActivity {
             }
 
         });
+    }
+
+    void rollAnim(int randNum){
+        TextView result = findViewById(R.id.result);
+        ValueAnimator animator = ValueAnimator.ofInt(0, 36);
+        animator.setDuration(800); //Duration is in milliseconds
+        animator.setInterpolator(new LinearInterpolator());
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                result.setText(animation.getAnimatedValue().toString());
+                if (redA.contains(animation.getAnimatedValue())) {
+                    result.setTextColor(Color.parseColor("#FF0000"));
+                }
+                if (blackA.contains(animation.getAnimatedValue())) {
+                    result.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+        });
+
+        ValueAnimator animator2 = ValueAnimator.ofInt(0, 36);
+        animator2.setDuration(1300); //Duration is in milliseconds
+        animator2.setInterpolator(new LinearInterpolator());
+        animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                result.setText(animation.getAnimatedValue().toString());
+                if (redA.contains(animation.getAnimatedValue())) {
+                    result.setTextColor(Color.parseColor("#FF0000"));
+                }
+                if (blackA.contains(animation.getAnimatedValue())) {
+                    result.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+        });
+
+        ValueAnimator animator3 = ValueAnimator.ofInt(0, 36);
+        animator3.setDuration(2000); //Duration is in milliseconds
+        animator3.setInterpolator(new LinearInterpolator());
+        animator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                result.setText(animation.getAnimatedValue().toString());
+                if (redA.contains(animation.getAnimatedValue())) {
+                    result.setTextColor(Color.parseColor("#FF0000"));
+                }
+                if (blackA.contains(animation.getAnimatedValue())) {
+                    result.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+        });
+
+        ValueAnimator animator4 = ValueAnimator.ofInt(0, randNum);
+        animator4.setDuration(120*randNum); //Duration is in milliseconds
+        animator4.setInterpolator(new DecelerateInterpolator());
+        animator4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                result.setText(animation.getAnimatedValue().toString());
+                if (redA.contains(animation.getAnimatedValue())) {
+                    result.setTextColor(Color.parseColor("#FF0000"));
+                }
+                if (blackA.contains(animation.getAnimatedValue())) {
+                    result.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+        });
+        AnimatorSet s = new AnimatorSet();
+        s.playSequentially(animator,animator2,animator3,animator4);
+        s.start();
     }
 }
