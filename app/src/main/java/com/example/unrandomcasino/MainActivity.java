@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
         final Button button1 = findViewById(R.id.game1);
         final Button button2 = findViewById(R.id.game2);
         final Button button3 = findViewById(R.id.game3);
-
+        TextView money = findViewById(R.id.money);
+        money.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -42,4 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TextView money = findViewById(R.id.money);
+        money.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
+    }
 }
