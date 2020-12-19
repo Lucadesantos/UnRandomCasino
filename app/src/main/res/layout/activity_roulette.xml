@@ -149,7 +149,7 @@
         android:background="@drawable/editstyle"
         android:digits="0123456789"
         android:hint="0"
-
+        android:text="0"
         android:inputType="number"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -111,12 +111,12 @@ public class Roulette extends AppCompatActivity {
             public void onClick(View v) {
                 currBet = Integer.parseInt(bet.getText().toString());
                 if (currBet == 0){return;}
-                if (Integer.parseInt(bet.getText().toString()) > Perso.getMoney()){
+                if (Integer.parseInt(bet.getText().toString()) > Perso.getMoney()) {
                     currBet = Perso.getMoney();
                     bet.setText(Perso.getMoney());
                 }
                 Perso.setMoney(Perso.getMoney() - currBet);
-                currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
+                currentMoney.setText(getString(R.string.money, String.valueOf(Perso.getMoney())));
 
                 //TODO: choix de RNG
                 //Ici j'utilise le simple random pour test
