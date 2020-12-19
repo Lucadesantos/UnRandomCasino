@@ -8,11 +8,11 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
@@ -21,10 +21,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.Arrays;
 import java.util.List;
+
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 
 public class Roulette extends AppCompatActivity {
     String choice = " ";
@@ -36,7 +38,6 @@ public class Roulette extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roulette);
-
         Button red = findViewById(R.id.red);
         Button black = findViewById(R.id.black);
         Button odd = findViewById(R.id.odd);
@@ -47,6 +48,8 @@ public class Roulette extends AppCompatActivity {
         TextView currentMoney = findViewById(R.id.money2);
         TextView choiceTV = findViewById(R.id.choice);
         TextView result = findViewById(R.id.result);
+
+
 
         currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
         red.setOnClickListener(new View.OnClickListener() {
@@ -72,7 +75,7 @@ public class Roulette extends AppCompatActivity {
             public void onClick(View v) {
                 choice = "even";
                 choiceTV.setText(choice);
-
+                choiceTV.setTextColor(Color.parseColor("#000000"));
             }
         });
 
@@ -81,6 +84,7 @@ public class Roulette extends AppCompatActivity {
             public void onClick(View v) {
                 choice = "odd";
                 choiceTV.setText(choice);
+                choiceTV.setTextColor(Color.parseColor("#000000"));
             }
         });
 
@@ -147,12 +151,34 @@ public class Roulette extends AppCompatActivity {
         if (resArray.contains(choice)){
             // WIN WIN
             int gainsMultiplyer;
+            int confLen;
+            int particles;
             if (doubleA.contains(choice)) {
                 gainsMultiplyer = 2;
+                confLen = Math.min(currBet*10, 1500);
+
+                particles = 300;
             } else {
                 gainsMultiplyer = 36;
+                confLen = 5000;
+                particles = 500;
             }
+            Log.d("LEN",String.valueOf(confLen));
             Perso.setMoney(Perso.getMoney() + currBet*gainsMultiplyer);
+            DisplayMetrics display = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(display);
+            final KonfettiView conf = findViewById(R.id.viewKonfetti);
+            conf.build()
+                    .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                    .setDirection(0.0, 359.0)
+                    .setSpeed(1f, 5f)
+                    .setFadeOutEnabled(true)
+                    .setTimeToLive(2000L)
+                    .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                    .addSizes(new Size(12, 5))
+                    .setPosition(-50f, display.widthPixels + 50f, -50f, -50f)
+                    .streamFor(particles, confLen);
+
         }
         currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
     }
