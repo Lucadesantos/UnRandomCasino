@@ -25,10 +25,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Roulette extends AppCompatActivity {
-    String choice;
+    String choice = " ";
     Integer currBet;
     List<Integer> redA = Arrays.asList(1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36);
     List<Integer> blackA = Arrays.asList(2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35);
+    List<String> doubleA = Arrays.asList("odd","even","black","red");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,7 @@ public class Roulette extends AppCompatActivity {
         TextView choiceTV = findViewById(R.id.choice);
         TextView result = findViewById(R.id.result);
 
+        currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
         red.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,12 +104,13 @@ public class Roulette extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 currBet = Integer.parseInt(bet.getText().toString());
+                if (currBet == 0){return;}
                 if (Integer.parseInt(bet.getText().toString()) > Perso.getMoney()){
                     currBet = Perso.getMoney();
                     bet.setText(Perso.getMoney());
                 }
                 Perso.setMoney(Perso.getMoney() - currBet);
-                currentMoney.setText(String.valueOf(Perso.getMoney()));
+                currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
 
                 //TODO: choix de RNG
                 //Ici j'utilise le simple random pour test
@@ -192,11 +195,17 @@ public class Roulette extends AppCompatActivity {
                     resArray.set(2,"odd");
                 }
 
-                Log.d("TEST",choice);
-                Log.d("TEST",resArray.get(0));
-                Log.d("TEST",resArray.get(1));
-                Log.d("TEST",resArray.get(2));
-                if (resArray.contains(choice)){Log.d("TEST","WINNN");} else {Log.d("TEST","LOOSE");}
+                if (resArray.contains(choice)){
+                    // WIN WIN
+                    int gainsMultiplyer;
+                    if (doubleA.contains(choice)) {
+                        gainsMultiplyer = 2;
+                    } else {
+                        gainsMultiplyer = 36;
+                    }
+                    Perso.setMoney(Perso.getMoney() + currBet*gainsMultiplyer);
+                }
+                currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
             }
 
         });

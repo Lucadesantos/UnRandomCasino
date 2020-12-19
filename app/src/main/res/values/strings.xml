@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UnRandomCasino</string>
+    <string name="money">%1$s $</string>
 </resources>
