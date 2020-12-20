@@ -2,6 +2,6 @@
 <resources>
     <string-array name="RNG">
         <item>"Java Default Random"</item>
-        <item>"Test (31)"</item>
+        <item>"Test"</item>
     </string-array>
 </resources>
