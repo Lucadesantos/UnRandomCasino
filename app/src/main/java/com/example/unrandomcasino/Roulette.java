@@ -1,17 +1,13 @@
 package com.example.unrandomcasino;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -25,8 +21,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import nl.dionsegijn.konfetti.KonfettiView;
-import nl.dionsegijn.konfetti.models.Shape;
-import nl.dionsegijn.konfetti.models.Size;
 
 public class Roulette extends AppCompatActivity {
     String choice = " ";
@@ -121,7 +115,7 @@ public class Roulette extends AppCompatActivity {
                 //TODO: choix de RNG
                 //Ici j'utilise le simple random pour test
 
-                int randNum = RNG.getRandomTest(36);
+                int randNum = Perso.getSelectedRNG().getNumber(36);
 
                 rollAnim(randNum);
 
@@ -163,21 +157,11 @@ public class Roulette extends AppCompatActivity {
                 confLen = 5000;
                 particles = 500;
             }
-            Log.d("LEN",String.valueOf(confLen));
             Perso.setMoney(Perso.getMoney() + currBet*gainsMultiplyer);
-            DisplayMetrics display = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(display);
+
             final KonfettiView conf = findViewById(R.id.viewKonfetti);
-            conf.build()
-                    .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
-                    .setDirection(0.0, 359.0)
-                    .setSpeed(1f, 5f)
-                    .setFadeOutEnabled(true)
-                    .setTimeToLive(2000L)
-                    .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
-                    .addSizes(new Size(12, 5))
-                    .setPosition(-50f, display.widthPixels + 50f, -50f, -50f)
-                    .streamFor(particles, confLen);
+            android.view.WindowManager win = getWindowManager();
+            Confetti.make(conf, win,confLen, particles);
 
         }
         currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));

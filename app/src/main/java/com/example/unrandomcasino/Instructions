@@ -1,0 +1,16 @@
+
+
+// GENERATE RANDOM NUMBER FROM SELECTED RNG
+    int bound; // max number
+    int randNum = Perso.getSelectedRNG().getNumber(bound);
+
+
+// PUT THIS IN CODE TO MAKE CONFETTI
+    int confLen = length (millisec) of animation
+    int particles = number of confetti / sec
+
+    final KonfettiView conf = findViewById(R.id.viewKonfetti); // needs confettiView object in XML
+    android.view.WindowManager win = getWindowManager();
+
+    Confetti.make(conf, win,confLen, particles);
+
