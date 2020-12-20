@@ -120,8 +120,8 @@ public class SlotMachine extends AppCompatActivity {
 
 
         ValueAnimator animator2 = ValueAnimator.ofInt(0, randNum1);
-        animator2.setDuration(80*randNum1); //Duration is in milliseconds
-        animator2.setInterpolator(new DecelerateInterpolator());
+        animator2.setDuration(250*randNum1); //Duration is in milliseconds
+        animator2.setInterpolator(new LinearInterpolator());
         animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
                 SlotMachine.displaySym(0,animation.getAnimatedValue().toString(),t1,t2,t3);
@@ -150,8 +150,8 @@ public class SlotMachine extends AppCompatActivity {
         });
 
         ValueAnimator animator5 = ValueAnimator.ofInt(0, randNum2);
-        animator5.setDuration(80*randNum2); //Duration is in milliseconds
-        animator5.setInterpolator(new DecelerateInterpolator());
+        animator5.setDuration(250*randNum2); //Duration is in milliseconds
+        animator5.setInterpolator(new LinearInterpolator());
         animator5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
                 SlotMachine.displaySym(1,animation.getAnimatedValue().toString(),t1,t2,t3);
@@ -189,8 +189,8 @@ public class SlotMachine extends AppCompatActivity {
         });
 
         ValueAnimator animator9 = ValueAnimator.ofInt(0, randNum3);
-        animator9.setDuration(80*randNum3); //Duration is in milliseconds
-        animator9.setInterpolator(new DecelerateInterpolator());
+        animator9.setDuration(250*randNum3); //Duration is in milliseconds
+        animator9.setInterpolator(new LinearInterpolator());
         animator9.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
                 SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);

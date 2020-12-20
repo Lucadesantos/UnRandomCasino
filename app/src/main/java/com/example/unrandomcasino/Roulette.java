@@ -42,7 +42,7 @@ public class Roulette extends AppCompatActivity {
         EditText bet = findViewById(R.id.bet);
         TextView currentMoney = findViewById(R.id.money2);
         TextView choiceTV = findViewById(R.id.choice);
-        TextView result = findViewById(R.id.result);
+
 
 
 
