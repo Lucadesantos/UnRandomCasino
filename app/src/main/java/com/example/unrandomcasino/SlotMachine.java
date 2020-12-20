@@ -26,6 +26,15 @@ import nl.dionsegijn.konfetti.KonfettiView;
 public class SlotMachine extends AppCompatActivity {
     List<Integer> results = Arrays.asList(9,9,9);
     Integer currBet;
+
+    public static void displaySym(int pos, String num) {
+        // Pos: position in slot machine (0,1,2)
+    }
+
+    public static void finished(){
+        // After animation
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -30,9 +31,11 @@ public class Settings extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
                     Perso.setRNG(new JavaRNG());
+                    Log.d("TEST","JAVARNG");
                 }
-                if (position == 1){
+                else if (position == 1){
                     Perso.setRNG(new NoRNG());
+                    Log.d("TEST","NORNG");
                 }
                 Perso.selectPos = position;
             }
