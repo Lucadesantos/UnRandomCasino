@@ -1,6 +1,6 @@
 
 
-// GENERATE RANDOM NUMBER FROM SELECTED RNG
+// GENERATE RANDOM NUMBER FROM USER SELECTED RNG
     int bound; // max number
     int randNum = Perso.getSelectedRNG().getNumber(bound);
 
