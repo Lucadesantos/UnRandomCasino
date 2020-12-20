@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,8 +29,11 @@ public class SlotMachine extends AppCompatActivity {
     List<Integer> results = Arrays.asList(9,9,9);
     Integer currBet;
 
-    public static void displaySym(int pos, String num) {
-        // Pos: position in slot machine (0,1,2)
+
+    public static void displaySym(int pos, String num, TextView t1,TextView t2,TextView t3) {
+        if (pos==0){t1.setText(num);}
+        if (pos==1){t2.setText(num);}
+        if (pos==2){t3.setText(num);}
     }
 
     public static void finished(){
@@ -75,7 +80,7 @@ public class SlotMachine extends AppCompatActivity {
                     choice3.setText(String.valueOf(randNum2));
                     choice4.setText(String.valueOf(randNum3));
 
-                    /// ANIMATION HERE ///
+                    SlotAnim.rollAnim(8, randNum1, randNum2, randNum3,choice2,choice3,choice4);
 
                     results.set(0, randNum1);
                     results.set(1, randNum2);
