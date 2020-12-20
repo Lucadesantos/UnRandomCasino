@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
+import com.example.unrandomcasino.RNG.*;
+
 public class RNGParameters extends AppCompatActivity {
 
     @Override
