@@ -7,7 +7,7 @@
     tools:context=".Settings">
 
     <EditText
-        android:id="@+id/bet3"
+        android:id="@+id/seed"
         android:layout_width="364dp"
         android:layout_height="52dp"
         android:layout_marginTop="136dp"

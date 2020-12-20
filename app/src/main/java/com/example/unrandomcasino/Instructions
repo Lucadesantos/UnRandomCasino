@@ -11,7 +11,7 @@
     int confLen = length (millisec) of animation
     int particles = number of confetti / sec
 
-    final KonfettiView conf = findViewById(R.id.viewKonfetti); // needs confettiView object in XML
+    final KonfettiView conf = findViewById(R.id.viewKonfetti); // needs confettiView object in Layout
     android.view.WindowManager win = getWindowManager();
 
     Confetti.make(conf, win,confLen, particles);

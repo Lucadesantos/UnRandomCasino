@@ -7,8 +7,10 @@ public class Perso {
     private static int Money = 1000;
     static RNG selectedRNG = new JavaRNG();
     static int selectPos = 0;
-    static int getMoney(){return Money;}
+    static int seed = 0;
+    static public int getSeed(){return seed;}
+    static public int getMoney(){return Money;}
     static void setMoney(int money){Money = money;}
-    static RNG getSelectedRNG(){return selectedRNG;}
+    static public RNG getSelectedRNG(){return selectedRNG;}
     static void setRNG(RNG newRNG){selectedRNG = newRNG;}
 }

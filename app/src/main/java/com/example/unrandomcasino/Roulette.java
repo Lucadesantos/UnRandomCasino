@@ -46,7 +46,7 @@ public class Roulette extends AppCompatActivity {
 
 
 
-        currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
+        currentMoney.setText(String.valueOf(Perso.getMoney()));
         red.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +107,6 @@ public class Roulette extends AppCompatActivity {
                 String betStr = bet.getText().toString();
                 if (TextUtils.isEmpty(betStr)) {
                     bet.setError("Please place a bet");
-                    return;
                 } else {
                     currBet = Integer.parseInt(betStr);
                     if (currBet == 0) {
