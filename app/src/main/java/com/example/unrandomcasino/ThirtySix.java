@@ -12,6 +12,6 @@ public class ThirtySix extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thirty_six);
-        TextView spin = findViewById(R.id.test_id);
+        // TextView spin = findViewById(R.id.test_id);
     }
 }
