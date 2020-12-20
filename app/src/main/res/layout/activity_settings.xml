@@ -6,6 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".Settings">
 
+    <EditText
+        android:id="@+id/bet3"
+        android:layout_width="364dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="136dp"
+        android:background="@drawable/editstyle"
+        android:digits="0123456789"
+        android:hint="Seed"
+        android:inputType="number"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RNG" />
+
     <Spinner
         android:id="@+id/RNG"
         android:layout_width="228dp"
@@ -32,4 +47,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.347"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
