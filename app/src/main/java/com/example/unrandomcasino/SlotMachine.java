@@ -71,22 +71,17 @@ public class SlotMachine extends AppCompatActivity {
                     results.set(0, randNum1);
                     results.set(1, randNum2);
                     results.set(2, randNum3);
-
                     showResult();
-
-
                 }
-
             }
         });
-
     }
 
     void showResult(){
         TextView currentMoney = findViewById(R.id.money3);
         if(results.get(0).equals(results.get(1)) && results.get(1).equals(results.get(2))){
             //WIN WIN
-            int confLen = 5000;
+            int confLen = Math.min(currBet*10, 5000);
             int particles = 500;
 
             Perso.setMoney(Perso.getMoney() + currBet*results.get(0));
