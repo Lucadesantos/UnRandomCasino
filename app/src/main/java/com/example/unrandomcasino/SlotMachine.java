@@ -12,5 +12,6 @@ public class SlotMachine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slot_machine);
         Button spin = findViewById(R.id.spin);
+        //test test test
     }
 }
