@@ -16,6 +16,15 @@ import java.util.List;
 public class SlotMachine extends AppCompatActivity {
     List<Integer> poss = Arrays.asList(1,2,3);
     Integer currBet;
+
+    public static void displaySym(int pos, String num) {
+        // Pos: position in slot machine (0,1,2)
+    }
+
+    public static void finished(){
+        // After animation
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,5 +70,7 @@ public class SlotMachine extends AppCompatActivity {
             }
         });
 
+
     }
+
 }
