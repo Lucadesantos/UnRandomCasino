@@ -7,6 +7,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,6 +27,8 @@ import java.util.List;
 
 
 import nl.dionsegijn.konfetti.KonfettiView;
+
+
 public class SlotMachine extends AppCompatActivity {
     List<Integer> results = Arrays.asList(9,9,9);
     Integer currBet;
@@ -49,6 +52,9 @@ public class SlotMachine extends AppCompatActivity {
         TextView choice2 = findViewById(R.id.choice2);
         TextView choice3 = findViewById(R.id.choice3);
         TextView choice4 = findViewById(R.id.choice4);
+        final MediaPlayer mp2 = MediaPlayer.create(this, R.raw.sample4);
+
+
 
         currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
 
@@ -70,6 +76,7 @@ public class SlotMachine extends AppCompatActivity {
                     }
                     Perso.setMoney(Perso.getMoney() - currBet);
                     currentMoney.setText(getString(R.string.money, String.valueOf(Perso.getMoney())));
+                    mp2.start();
                     int randNum1 = Perso.getSelectedRNG().getNumber(8);
                     int randNum2 = Perso.getSelectedRNG().getNumber(8);
                     int randNum3 = Perso.getSelectedRNG().getNumber(8);
@@ -80,6 +87,8 @@ public class SlotMachine extends AppCompatActivity {
                     results.set(1, randNum2);
                     results.set(2, randNum3);
                     rollAnim(8, randNum1, randNum2, randNum3,choice2,choice3,choice4);
+
+
 
 
                 }
@@ -95,10 +104,12 @@ public class SlotMachine extends AppCompatActivity {
             int particles = 500;
 
             Perso.setMoney(Perso.getMoney() + currBet*results.get(0));
-
+            final MediaPlayer mp = MediaPlayer.create(this, R.raw.congrats);
             final KonfettiView conf = findViewById(R.id.viewKonfetti2);
             android.view.WindowManager win = getWindowManager();
             Confetti.make(conf,win ,confLen, particles);
+
+            mp.start();
         }
         currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
     }
