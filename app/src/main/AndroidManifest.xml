@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.UnRandomCasino">
         <activity android:name=".ThirtySix"></activity>
-        <activity android:name=".RNGParameters" />
+        <activity android:name=".Settings" />
         <activity android:name=".SlotMachine" />
         <activity android:name=".Roulette" />
         <activity android:name=".MainActivity">
