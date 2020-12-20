@@ -3,6 +3,7 @@ package com.example.unrandomcasino;
 public class Perso {
     private static int Money = 1000;
     static RNG selectedRNG = new JavaRNG();
+    static int selectPos = 0;
     static int getMoney(){return Money;}
     static void setMoney(int money){Money = money;}
     static RNG getSelectedRNG(){return selectedRNG;}

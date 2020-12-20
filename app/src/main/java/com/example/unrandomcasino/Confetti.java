@@ -14,7 +14,7 @@ public class Confetti extends AppCompatActivity {
         DisplayMetrics display = new DisplayMetrics();
         win.getDefaultDisplay().getMetrics(display);
         conf.build()
-                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                .addColors(Color.parseColor("#fc0e9b"), Color.parseColor("#f6d336"), Color.parseColor("#f63f55"),Color.parseColor("#4cf8f4"),Color.parseColor("#9bdf5b"))
                 .setDirection(0.0, 359.0)
                 .setSpeed(1f, 5f)
                 .setFadeOutEnabled(true)

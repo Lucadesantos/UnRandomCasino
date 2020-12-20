@@ -6,6 +6,8 @@
 
 
 // PUT THIS IN CODE TO MAKE CONFETTI
+    import nl.dionsegijn.konfetti.KonfettiView;
+
     int confLen = length (millisec) of animation
     int particles = number of confetti / sec
 

@@ -15,6 +15,7 @@ public class RNGParameters extends AppCompatActivity {
         setContentView(R.layout.activity_rng_parameters);
 
         Spinner choice = findViewById(R.id.RNG);
+        choice.setSelection(Perso.selectPos);
         choice.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -24,6 +25,7 @@ public class RNGParameters extends AppCompatActivity {
                 if (position == 1){
                     Perso.setRNG(new NoRNG());
                 }
+                Perso.selectPos = position;
             }
 
             @Override
@@ -31,5 +33,12 @@ public class RNGParameters extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Spinner choice = findViewById(R.id.RNG);
+        choice.setSelection(Perso.selectPos);
     }
 }

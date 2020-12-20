@@ -8,6 +8,7 @@ import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -103,25 +104,30 @@ public class Roulette extends AppCompatActivity {
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                currBet = Integer.parseInt(bet.getText().toString());
-                if (currBet == 0){return;}
-                if (Integer.parseInt(bet.getText().toString()) > Perso.getMoney()) {
-                    currBet = Perso.getMoney();
-                    bet.setText(Perso.getMoney());
+                String betStr = bet.getText().toString();
+                if (TextUtils.isEmpty(betStr)) {
+                    bet.setError("Please place a bet");
+                    return;
+                } else {
+                    currBet = Integer.parseInt(betStr);
+                    if (currBet == 0) {
+                        return;
+                    }
+                    if (Integer.parseInt(bet.getText().toString()) > Perso.getMoney()) {
+                        currBet = Perso.getMoney();
+                        bet.setText(String.valueOf(Perso.getMoney()));
+                    }
+                    Perso.setMoney(Perso.getMoney() - currBet);
+                    currentMoney.setText(getString(R.string.money, String.valueOf(Perso.getMoney())));
+
+
+                    int randNum = Perso.getSelectedRNG().getNumber(36);
+
+                    rollAnim(randNum);
+
+
                 }
-                Perso.setMoney(Perso.getMoney() - currBet);
-                currentMoney.setText(getString(R.string.money, String.valueOf(Perso.getMoney())));
-
-                //TODO: choix de RNG
-                //Ici j'utilise le simple random pour test
-
-                int randNum = Perso.getSelectedRNG().getNumber(36);
-
-                rollAnim(randNum);
-
-
             }
-
         });
     }
     void showResult(int randNum){

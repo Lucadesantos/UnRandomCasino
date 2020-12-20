@@ -24,11 +24,11 @@
 
     <TextView
         android:id="@+id/choice"
-        android:layout_width="136dp"
-        android:layout_height="60dp"
+        android:layout_width="245dp"
+        android:layout_height="123dp"
         android:layout_marginTop="48dp"
         android:gravity="center"
-        android:textSize="30dp"
+        android:textSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,6 +141,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <EditText
         android:id="@+id/bet"
         android:layout_width="96dp"
@@ -149,7 +150,6 @@
         android:background="@drawable/editstyle"
         android:digits="0123456789"
         android:hint="0"
-        android:text="0"
         android:inputType="number"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
