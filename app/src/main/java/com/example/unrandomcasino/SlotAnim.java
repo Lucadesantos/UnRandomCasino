@@ -10,13 +10,13 @@ import android.view.animation.LinearInterpolator;
 import android.widget.TextView;
 
 public class SlotAnim {
-    void rollAnim(int max, int randNum1, int randNum2, int randNum3){
+    static void rollAnim(int max, int randNum1, int randNum2, int randNum3,TextView t1,TextView t2,TextView t3){
         ValueAnimator animator = ValueAnimator.ofInt(0, max);
         animator.setDuration(1000); //Duration is in milliseconds
         animator.setInterpolator(new LinearInterpolator());
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(0,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(0,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
         });
 
@@ -26,7 +26,7 @@ public class SlotAnim {
         animator2.setInterpolator(new DecelerateInterpolator());
         animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(0,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(0,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
 
         });
@@ -38,7 +38,7 @@ public class SlotAnim {
         animator3.setInterpolator(new LinearInterpolator());
         animator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(1,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(1,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
         });
 
@@ -47,7 +47,7 @@ public class SlotAnim {
         animator4.setInterpolator(new LinearInterpolator());
         animator4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(1,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(1,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
         });
 
@@ -56,7 +56,7 @@ public class SlotAnim {
         animator5.setInterpolator(new DecelerateInterpolator());
         animator5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(1,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(1,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
 
         });
@@ -68,7 +68,7 @@ public class SlotAnim {
         animator6.setInterpolator(new LinearInterpolator());
         animator6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(2,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
         });
 
@@ -77,7 +77,7 @@ public class SlotAnim {
         animator7.setInterpolator(new LinearInterpolator());
         animator7.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(2,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
         });
 
@@ -86,7 +86,7 @@ public class SlotAnim {
         animator8.setInterpolator(new LinearInterpolator());
         animator8.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(2,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
         });
 
@@ -95,7 +95,7 @@ public class SlotAnim {
         animator9.setInterpolator(new DecelerateInterpolator());
         animator9.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             public void onAnimationUpdate(ValueAnimator animation) {
-                SlotMachine.displaySym(2,animation.getAnimatedValue().toString());
+                SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);
             }
 
         });
