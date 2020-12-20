@@ -46,7 +46,7 @@ public class Roulette extends AppCompatActivity {
 
 
 
-        currentMoney.setText(String.valueOf(Perso.getMoney()));
+        currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
         red.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
