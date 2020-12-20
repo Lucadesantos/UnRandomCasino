@@ -77,9 +77,6 @@ public class SlotMachine extends AppCompatActivity {
                     int randNum1 = Perso.getSelectedRNG().getNumber(8);
                     int randNum2 = Perso.getSelectedRNG().getNumber(8);
                     int randNum3 = Perso.getSelectedRNG().getNumber(8);
-                    Log.d("TESTAAAAAAA", String.valueOf(Perso.selectPos));
-                    Log.d("TESTAAAAAAA", String.valueOf(randNum2));
-                    Log.d("TESTAAAAAAA", String.valueOf(randNum3));
                     choice2.setText(String.valueOf(randNum1));
                     choice3.setText(String.valueOf(randNum2));
                     choice4.setText(String.valueOf(randNum3));
@@ -98,7 +95,7 @@ public class SlotMachine extends AppCompatActivity {
         TextView currentMoney = findViewById(R.id.money3);
         if(results.get(0).equals(results.get(1)) && results.get(1).equals(results.get(2))){
             //WIN WIN
-            int confLen = Math.min(currBet*10, 5000);
+            int confLen = Math.min(currBet*10, 2000);
             int particles = 500;
 
             Perso.setMoney(Perso.getMoney() + currBet*results.get(0));
