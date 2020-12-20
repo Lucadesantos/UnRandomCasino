@@ -2,19 +2,29 @@ package com.example.unrandomcasino;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Arrays;
 import java.util.List;
 
+
+import nl.dionsegijn.konfetti.KonfettiView;
 public class SlotMachine extends AppCompatActivity {
-    List<Integer> poss = Arrays.asList(1,2,3);
+    List<Integer> results = Arrays.asList(9,9,9);
     Integer currBet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +66,35 @@ public class SlotMachine extends AppCompatActivity {
                     choice3.setText(String.valueOf(randNum2));
                     choice4.setText(String.valueOf(randNum3));
 
+                    /// ANIMATION HERE ///
+
+                    results.set(0, randNum1);
+                    results.set(1, randNum2);
+                    results.set(2, randNum3);
+
+                    showResult();
+
+
                 }
 
             }
         });
 
+    }
+
+    void showResult(){
+        TextView currentMoney = findViewById(R.id.money3);
+        if(results.get(0).equals(results.get(1)) && results.get(1).equals(results.get(2))){
+            //WIN WIN
+            int confLen = 5000;
+            int particles = 500;
+
+            Perso.setMoney(Perso.getMoney() + currBet*results.get(0));
+
+            final KonfettiView conf = findViewById(R.id.viewKonfetti2);
+            android.view.WindowManager win = getWindowManager();
+            Confetti.make(conf,win ,confLen, particles);
+        }
+        currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
     }
 }
