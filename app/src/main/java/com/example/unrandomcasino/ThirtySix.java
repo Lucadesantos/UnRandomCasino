@@ -10,10 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class ThirtySix extends AppCompatActivity {
-    Integer currBet, _pot, _turn, _score, _dice;
-    String myTurn = "your turn", oppTurn = "IA turn";
+    Integer currBet, _pot, _turn, _score, _dice, _iaBet = (int)(Perso.getMoney() * 0.1);
+    String _myTurn = "your turn", _oppTurn = "IA turn";
     String _ia_bet = "IA bet %d $", _player_bet = "You bet %d  $", _ia_plays = "IA played %d", _player_plays = "You played %d", _ia_wins = "IA won", _player_wins = "you won";
-    Boolean firsThrow = true;
+    Boolean _firsThrow = true, _newGame  = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,66 +32,87 @@ public class ThirtySix extends AppCompatActivity {
 
         currentMoney.setText(String.valueOf(Perso.getMoney()));
         resetGame();
-        String p = _pot + "$";
-        text_pot.setText(p);
-        text_turn.setText(myTurn);
+        text_pot.setText("0 $");
+        text_turn.setText(_myTurn);
         text_score.setText(String.valueOf(_score));
         text_dice.setText(String.valueOf(0));
-        information.setText(String.format(_ia_bet,50));
+        information.setText(String.format(_ia_bet, _iaBet));
+        throw_dice.setText("New game");
 
         throw_dice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String betStr = bet.getText().toString();
-                // vérfier si 1er lancé
-                if (firsThrow) {
-                    if (TextUtils.isEmpty(betStr)) {
-                        bet.setError("Please place a bet");
-                    }
-                    else {
-                        firsThrow = false;
-                        currBet = Integer.parseInt(betStr);
-                        if (currBet == 0) { return; }
-                        if (Integer.parseInt(bet.getText().toString()) > Perso.getMoney()) {
-                            currBet = Perso.getMoney();
-                            bet.setText(String.valueOf(Perso.getMoney()));
+                if (_newGame) {
+                    _firsThrow = true;
+                    _newGame = false;
+                    throw_dice.setText("Throw dice");
+                    information.setText(String.format(_ia_bet, _iaBet));
+                    _pot += _iaBet;
+                    String p = _pot + "$";
+                    text_pot.setText(p);
+                }else {
+                    // vérfier si 1er lancé
+                    if (_firsThrow) {
+                        if (TextUtils.isEmpty(betStr)) {
+                            bet.setError("Please place a bet");
                         }
-                        _pot += currBet;
-                        information.setText(String.format(_player_bet, currBet));
-                        String p = _pot + "$";
-                        text_pot.setText(p);
-                        System.out.println("Le pot est de " + _pot);
+                        else {
+                            _firsThrow = false;
+                            currBet = Integer.parseInt(betStr);
+                            if (currBet == 0) { return; }
+                            if (Integer.parseInt(bet.getText().toString()) > Perso.getMoney()) {
+                                currBet = Perso.getMoney();
+                                bet.setText(String.valueOf(Perso.getMoney()));
+                            }
+                            _pot += currBet;
+                            information.setText(String.format(_player_bet, currBet));
+                            String p = _pot + "$";
+                            text_pot.setText(p);
+                            System.out.println("Le pot est de " + _pot);
 
-                        Perso.setMoney(Perso.getMoney() - currBet);
-                        currentMoney.setText(getString(R.string.money, String.valueOf(Perso.getMoney())));
-                        int randNum = Perso.getSelectedRNG().getNumber(6);
-                        System.out.println("vous jouez " + (randNum+1));
-                        _score += (randNum+1);
-                        _dice = (randNum+1);
-                        information.setText(String.format(_player_plays, _dice));
-                        
-                        checkWin();
-                        updateScreen(text_pot, text_turn, text_score, text_dice);
-                        throw_dice.setText("Next turn");
-                    }
-                }
-                else {
-                    if (_turn == 0) {
-                        int randNum = Perso.getSelectedRNG().getNumber(6);
-                        _score += (randNum+1);
-                        _dice = (randNum+1);
-                        System.out.println("vous jouez " + (randNum+1));
-                        information.setText(String.format(_player_plays, _dice));
-                        throw_dice.setText("Next turn");
+                            Perso.setMoney(Perso.getMoney() - currBet);
+                            currentMoney.setText(getString(R.string.money, String.valueOf(Perso.getMoney())));
+                            int randNum = Perso.getSelectedRNG().getNumber(6);
+                            System.out.println("vous jouez " + (randNum+1));
+                            _score += (randNum+1);
+                            _dice = (randNum+1);
+                            information.setText(String.format(_player_plays, _dice));
+
+                            nextTurn();
+                            updateScreen(text_pot, text_turn, text_score, text_dice);
+                            throw_dice.setText("Next turn");
+                        }
                     }
                     else {
-                        opponentPlay();
-                        information.setText(String.format(_ia_plays, _dice));
-                        throw_dice.setText("Throw dice");
+                        if (_turn == 0) {
+                            int randNum = Perso.getSelectedRNG().getNumber(6);
+                            _score += (randNum+1);
+                            _dice = (randNum+1);
+                            System.out.println("vous jouez " + (randNum+1));
+                            information.setText(String.format(_player_plays, _dice));
+                            throw_dice.setText("Next turn");
+                        }
+                        else {
+                            opponentPlay();
+                            information.setText(String.format(_ia_plays, _dice));
+                            throw_dice.setText("Throw dice");
+                        }
+                        updateScreen(text_pot, text_turn, text_score, text_dice);
+                        if (checkWin()) {
+                            if (_turn == 0) {
+                                Perso.setMoney(Perso.getMoney() + _pot);
+                                currentMoney.setText(String.valueOf(Perso.getMoney()));
+                                information.setText(_player_wins);
+                            }
+                            else { information.setText(_ia_wins); };
+                            resetGame();
+                            _newGame = true;
+                            throw_dice.setText("New game");
+                        }
+                        else { nextTurn();}
+                        updateScreen(text_pot, text_turn, text_score, text_dice);
                     }
-                    updateScreen(text_pot, text_turn, text_score, text_dice);
-                    checkWin();
-                    updateScreen(text_pot, text_turn, text_score, text_dice);
                 }
             }
         });
@@ -100,36 +121,15 @@ public class ThirtySix extends AppCompatActivity {
 
     void resetGame(){
         _turn = 0;
-        firsThrow = true;
+        _firsThrow = false;
         _score = 0;
-        _pot = 50;
+        _pot = 0;
         _dice = 0;
     };
 
-    void checkWin() {
-        if (_score > 36) {
-            if (_turn == 0) {
-                System.out.println("Vous avez perdu");
-            }
-            else {
-                System.out.println("Vous avez gagné");
-                Perso.setMoney(Perso.getMoney() + _pot);
-            }
-            resetGame();
-        }else if (_score == 36) {
-            if (_turn == 0) {
-                System.out.println("Vous avez perdu");
-            }
-            else {
-                System.out.println("Vous avez gagné");
-                Perso.setMoney(Perso.getMoney() + _pot);
-            }
-            resetGame();
-        }else {
-            _turn++; _turn %= 2;
-            System.out.println("personne n'a gagné. tour de " + _turn);
-        }
-    };
+    Boolean checkWin() { return _score >= 36 ; };
+
+    void nextTurn() { _turn++; _turn %= 2; };
 
     void opponentPlay() {
         int randNum = Perso.getSelectedRNG().getNumber(6);
@@ -143,8 +143,8 @@ public class ThirtySix extends AppCompatActivity {
         System.out.println("screen update");
         String p = _pot + "$";
         pot.setText(p);
-        if (_turn == 0) { turn.setText(myTurn); }
-        else { turn.setText(oppTurn); }
+        if (_turn == 0) { turn.setText(_myTurn); }
+        else { turn.setText(_oppTurn); }
         score.setText(String.valueOf(_score));
         dice.setText(String.valueOf(_dice));
     };
