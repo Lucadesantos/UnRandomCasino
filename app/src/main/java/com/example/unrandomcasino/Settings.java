@@ -14,7 +14,7 @@ public class Settings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rng_parameters);
+        setContentView(R.layout.activity_settings);
 
         Spinner choice = findViewById(R.id.RNG);
         choice.setSelection(Perso.selectPos);
