@@ -9,6 +9,7 @@ import android.animation.ValueAnimator;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -30,7 +31,7 @@ public class SlotMachine extends AppCompatActivity {
     Integer currBet;
 
 
-    public static void displaySym(int pos, String num, TextView t1,TextView t2,TextView t3) {
+    public static void displaySym(int pos, String num, TextView t1, TextView t2, TextView t3) {
         if (pos==0){t1.setText(num);}
         if (pos==1){t2.setText(num);}
         if (pos==2){t3.setText(num);}
@@ -76,16 +77,18 @@ public class SlotMachine extends AppCompatActivity {
                     int randNum1 = Perso.getSelectedRNG().getNumber(8);
                     int randNum2 = Perso.getSelectedRNG().getNumber(8);
                     int randNum3 = Perso.getSelectedRNG().getNumber(8);
+                    Log.d("TESTAAAAAAA", String.valueOf(Perso.selectPos));
+                    Log.d("TESTAAAAAAA", String.valueOf(randNum2));
+                    Log.d("TESTAAAAAAA", String.valueOf(randNum3));
                     choice2.setText(String.valueOf(randNum1));
                     choice3.setText(String.valueOf(randNum2));
                     choice4.setText(String.valueOf(randNum3));
-
-                    SlotAnim.rollAnim(8, randNum1, randNum2, randNum3,choice2,choice3,choice4);
-
                     results.set(0, randNum1);
                     results.set(1, randNum2);
                     results.set(2, randNum3);
-                    showResult();
+                    rollAnim(8, randNum1, randNum2, randNum3,choice2,choice3,choice4);
+
+
                 }
             }
         });
@@ -105,5 +108,115 @@ public class SlotMachine extends AppCompatActivity {
             Confetti.make(conf,win ,confLen, particles);
         }
         currentMoney.setText(getString(R.string.money,String.valueOf(Perso.getMoney())));
+    }
+
+
+    void rollAnim(int max, int randNum1, int randNum2, int randNum3,TextView t1,TextView t2,TextView t3){
+        ValueAnimator animator = ValueAnimator.ofInt(0, max);
+        animator.setDuration(1000); //Duration is in milliseconds
+        animator.setInterpolator(new LinearInterpolator());
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(0,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+        });
+
+
+        ValueAnimator animator2 = ValueAnimator.ofInt(0, randNum1);
+        animator2.setDuration(80*randNum1); //Duration is in milliseconds
+        animator2.setInterpolator(new DecelerateInterpolator());
+        animator2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(0,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+
+        });
+
+        // -------- 2 -----------------
+
+        ValueAnimator animator3 = ValueAnimator.ofInt(0, max);
+        animator3.setDuration(1000); //Duration is in milliseconds
+        animator3.setInterpolator(new LinearInterpolator());
+        animator3.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(1,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+        });
+
+        ValueAnimator animator4 = ValueAnimator.ofInt(0, max);
+        animator4.setDuration(1000); //Duration is in milliseconds
+        animator4.setInterpolator(new LinearInterpolator());
+        animator4.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(1,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+        });
+
+        ValueAnimator animator5 = ValueAnimator.ofInt(0, randNum2);
+        animator5.setDuration(80*randNum2); //Duration is in milliseconds
+        animator5.setInterpolator(new DecelerateInterpolator());
+        animator5.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(1,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+
+        });
+
+        // -------- 3 -----------------
+
+        ValueAnimator animator6 = ValueAnimator.ofInt(0, max);
+        animator6.setDuration(1000); //Duration is in milliseconds
+        animator6.setInterpolator(new LinearInterpolator());
+        animator6.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+        });
+
+        ValueAnimator animator7 = ValueAnimator.ofInt(0, max);
+        animator7.setDuration(1000); //Duration is in milliseconds
+        animator7.setInterpolator(new LinearInterpolator());
+        animator7.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+        });
+
+        ValueAnimator animator8 = ValueAnimator.ofInt(0, max);
+        animator8.setDuration(1000); //Duration is in milliseconds
+        animator8.setInterpolator(new LinearInterpolator());
+        animator8.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+        });
+
+        ValueAnimator animator9 = ValueAnimator.ofInt(0, randNum3);
+        animator9.setDuration(80*randNum3); //Duration is in milliseconds
+        animator9.setInterpolator(new DecelerateInterpolator());
+        animator9.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            public void onAnimationUpdate(ValueAnimator animation) {
+                SlotMachine.displaySym(2,animation.getAnimatedValue().toString(),t1,t2,t3);
+            }
+
+        });
+
+        animator9.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
+                showResult();
+            }
+        });
+
+        AnimatorSet s1 = new AnimatorSet();
+        s1.playSequentially(animator, animator2);
+        s1.start();
+        AnimatorSet s2 = new AnimatorSet();
+        s2.playSequentially(animator3, animator4, animator5);
+        s2.start();
+        AnimatorSet s3 = new AnimatorSet();
+        s3.playSequentially(animator6, animator7, animator8, animator9);
+        s3.start();
     }
 }
