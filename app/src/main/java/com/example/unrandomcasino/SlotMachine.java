@@ -30,15 +30,11 @@ public class SlotMachine extends AppCompatActivity {
     List<Integer> results = Arrays.asList(9,9,9);
     Integer currBet;
 
-
     public static void displaySym(int pos, String num, TextView t1, TextView t2, TextView t3) {
+        // TODO Dessins
         if (pos==0){t1.setText(num);}
         if (pos==1){t2.setText(num);}
         if (pos==2){t3.setText(num);}
-    }
-
-    public static void finished(){
-        // After animation
     }
 
     @Override
