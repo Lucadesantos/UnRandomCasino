@@ -9,7 +9,7 @@ import android.widget.Spinner;
 
 import com.example.unrandomcasino.RNG.*;
 
-public class RNGParameters extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
